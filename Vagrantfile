@@ -12,7 +12,7 @@ nodes = [
 # Shell script for Salt master/minion install and config
 $salt = <<SCRIPT
 apt-get install -qqy python-software-properties
-add-apt-repository -qqy ppa:saltstack/salt
+add-apt-repository -y ppa:saltstack/salt
 apt-get update
 apt-get install -qqy salt-master salt-minion
 sed -i 's/#master.*/master: localhost/gI' /etc/salt/minion
