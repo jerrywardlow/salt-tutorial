@@ -20,15 +20,18 @@ nodes = [
   }
 ]
 
-# Shell script for Salt master/minion install and config
-$salt = <<SCRIPT
+# Shell script for basic prep
+$base = <<SCRIPT
 apt-get install -qqy python-software-properties
 add-apt-repository -y ppa:saltstack/salt
 apt-get update
-apt-get install -qqy salt-master salt-minion
-sed -i 's/#master.*/master: localhost/gI' /etc/salt/minion
+SCRIPT
+
+# Shell script for Salt minion install and config
+$minion = <<SCRIPT
+apt-get install -qqy salt-minion
+sed -i 's/#master: salt/master: pretzel/gI' /etc/salt/minion
 service salt-minion restart
-salt-key -ya $HOSTNAME
 SCRIPT
 
 Vagrant.configure(2) do |config|
@@ -43,7 +46,12 @@ Vagrant.configure(2) do |config|
       nodeconfig.vm.synced_folder ".", "/vagrant", disabled: true
       nodeconfig.vm.provision :shell, inline: "echo #{ssh_pub_key} >> /root/.ssh/authorized_keys"
       nodeconfig.vm.provision :shell, inline: "echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys"
-      nodeconfig.vm.provision :shell, inline: $salt
+      nodeconfig.vm.provision :shell, inline: $base
+      if node[:role] == "minion"
+        nodeconfig.vm.provision :shell, inline: $minion
+      else
+        nodeconfig.vm.provision :shell, inline: "apt-get install -qqy salt-master"
+      end
       nodeconfig.vm.provider :virtualbox do |v|
         v.name = node[:hostname]
         v.memory = 1024
