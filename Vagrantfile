@@ -51,6 +51,7 @@ Vagrant.configure(2) do |config|
         nodeconfig.vm.provision :shell, inline: $minion
       else
         nodeconfig.vm.provision :shell, inline: "apt-get install -qqy salt-master"
+        nodeconfig.vm.synced_folder "formulas/", "/srv/salt/"
       end
       nodeconfig.vm.provider :virtualbox do |v|
         v.name = node[:hostname]
