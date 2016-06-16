@@ -2,4 +2,4 @@ base:
   '*':
     - vim
     - git
-    - apache2
+    - webserver
