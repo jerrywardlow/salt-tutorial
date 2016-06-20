@@ -12,3 +12,8 @@
     cache_valid_time: 3600
     state: present
   with_items: "{{ packages }}"
+
+- name: Update {{ conf_file.location }}
+  template:
+    src: "{{ conf_file.template }}"
+    dest: "{{ conf_file.location }}"
