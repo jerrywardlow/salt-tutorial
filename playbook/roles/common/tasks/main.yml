@@ -18,11 +18,8 @@
     src: "{{ conf_file.template }}"
     dest: "{{ conf_file.location }}"
     mode: 0644
+  notify: restart salt
 
-- name: Restart Service
-  service:
-    name: "salt-{{ role }}"
-    state: restarted
 
 - name: Accept keys
   command: "salt-key -A"
