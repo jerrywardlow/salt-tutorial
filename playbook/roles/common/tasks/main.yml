@@ -1,0 +1,14 @@
+---
+
+- name: Add SaltStack PPA
+  apt_repository:
+    repo: "ppa:{{ salt_repo }}"
+    state: present
+
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: present
+  with_items: "{{ packages }}"
