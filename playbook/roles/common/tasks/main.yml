@@ -18,3 +18,8 @@
     src: "{{ conf_file.template }}"
     dest: "{{ conf_file.location }}"
     mode: 0644
+
+- name: Restart Service
+  service:
+    name: "salt-{{ role }}"
+    state: restarted
