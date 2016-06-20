@@ -23,3 +23,7 @@
   service:
     name: "salt-{{ role }}"
     state: restarted
+
+- name: Accept keys
+  command: "salt-key -A"
+  when: role == "master"
