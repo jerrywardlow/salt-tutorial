@@ -1,1 +1,3 @@
 # {{ ansible_managed }}
+
+master: {{ hostvars[groups['master'][0]]['ansible_host'] }}
