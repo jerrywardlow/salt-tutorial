@@ -3,3 +3,5 @@
 packages:
   - python-software-properties
   - salt-minion
+
+conf_file: "/etc/salt/minion"

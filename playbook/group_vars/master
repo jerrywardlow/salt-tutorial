@@ -3,3 +3,5 @@
 packages:
   - python-software-properties
   - salt-master
+
+conf_file: "/etc/salt/master"
