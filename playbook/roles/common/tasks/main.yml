@@ -20,7 +20,6 @@
     mode: 0644
   notify: restart salt
 
-
 - name: Accept keys
-  command: "salt-key -A"
+  command: "salt-key -yA"
   when: role == "master"
