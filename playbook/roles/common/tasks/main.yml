@@ -17,3 +17,4 @@
   template:
     src: "{{ conf_file.template }}"
     dest: "{{ conf_file.location }}"
+    mode: 0644
