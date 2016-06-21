@@ -20,6 +20,11 @@
     mode: 0644
   notify: restart salt
 
+- name: Register unaccepted keys
+  command: "salt-key -l un"
+  when: role == "master"
+  register: salt_keys_un
+
 - name: Accept keys
   command: "salt-key -yA"
   when: role == "master"
