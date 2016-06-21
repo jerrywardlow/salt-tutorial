@@ -23,3 +23,6 @@
 - name: Accept keys
   command: "salt-key -yA"
   when: role == "master"
+  register: saltkey
+
+- debug: var=saltkey
