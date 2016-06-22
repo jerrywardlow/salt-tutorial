@@ -1,9 +1,0 @@
----
-
-packages:
-  - python-software-properties
-  - salt-minion
-
-conf_file:
-  location: "/etc/salt/minion"
-  template: "minion.j2"

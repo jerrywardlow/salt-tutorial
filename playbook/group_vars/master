@@ -1,9 +1,0 @@
----
-
-packages:
-  - python-software-properties
-  - salt-master
-
-conf_file:
-  location: "/etc/salt/master"
-  template: "master.j2"
