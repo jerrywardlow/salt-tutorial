@@ -25,6 +25,8 @@
   when: role == "master"
   register: salt_keys_un
 
+- debug: var=salt_keys_un
+
 - name: Accept keys
   command: "salt-key -yA"
   when: role == "master"
