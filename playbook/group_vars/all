@@ -1,3 +1,11 @@
 ---
 
 salt_repo: "saltstack/salt"
+
+packages:
+  - python-software-properties
+  - salt-{{ role }}
+
+conf_file:
+  location: "/etc/salt/{{ role }}"
+  template: "{{ role }}.j2"
