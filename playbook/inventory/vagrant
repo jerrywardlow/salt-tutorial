@@ -1,6 +1,6 @@
 [master]
-pretzel ansible_host=172.22.22.101 role=master
+pretzel ansible_host=192.168.56.41 role=master
 
 [minion]
-mustard ansible_host=172.22.22.111 role=minion
-nacho ansible_host=172.22.22.112 role=minion
+mustard ansible_host=192.168.56.42 role=minion
+nacho ansible_host=192.168.56.43 role=minion
